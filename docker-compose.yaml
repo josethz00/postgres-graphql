@@ -7,6 +7,8 @@ services:
     container_name: postgres-gql-db-container
     ports:
       - '5871:5432'
+    volumes:
+      - ./init-db.sql:/docker-entrypoint-initdb.d/scripts.sql
     environment:
       POSTGRES_USER: postgres-gql
       POSTGRES_PASSWORD: postgres-gql

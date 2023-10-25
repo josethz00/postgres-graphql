@@ -33,7 +33,7 @@ CREATE FUNCTION create_user(
     email TEXT
 ) RETURNS users AS $$ 
     INSERT INTO users (username, password, email) VALUES ($1, crypt($2, gen_salt('bf')), $3) RETURNING *;
-$$ LANGUAGE SQL;
+$$ LANGUAGE SQL VOLATILE;
 
 CREATE FUNCTION create_user_with_first_post(
     username VARCHAR(60),
@@ -50,4 +50,4 @@ BEGIN
     RETURN new_user;
 
 END;
-$$ LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql VOLATILE;

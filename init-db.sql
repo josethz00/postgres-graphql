@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS comments (
     FOREIGN KEY (post_id) REFERENCES posts (id)
 );
 
-CREATE FUNCTION create_user(
+CREATE FUNCTION create_user_secure(
     username VARCHAR(60),
     password VARCHAR(80),
     email TEXT
@@ -45,7 +45,7 @@ CREATE FUNCTION create_user_with_first_post(
 
 DECLARE
     new_user users;
-    
+
 BEGIN
     new_user := create_user(username, password, email);
     INSERT INTO posts (title, body, user_id) VALUES (post_title, post_body, new_user.id);

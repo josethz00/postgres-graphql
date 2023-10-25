@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  postgresgqldb:
+    image: postgres:latest
+    restart: always
+    container_name: postgres-gql-db-container
+    ports:
+      - '5871:5432'
+    environment:
+      POSTGRES_USER: postgres-gql
+      POSTGRES_PASSWORD: postgres-gql
+      POSTGRES_DB: postgres-gql

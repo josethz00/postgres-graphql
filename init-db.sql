@@ -60,4 +60,21 @@ CREATE FUNCTION get_posts_by_user_id(
     SELECT * FROM posts WHERE posts.user_id = $1;
 $$ LANGUAGE SQL STABLE;
 
-
+CREATE FUNCTION get_posts_with_comments_by_user_id(
+    user_id INTEGER
+) RETURNS TABLE(title, body, created) AS $$
+    SELECT 
+    posts.title as "postTitle", 
+    posts.body as "postBody",
+    posts.created_at as "postCreatedAt",
+    json_agg(
+        json_build_object(
+            'body', comments.body,
+            'createdAt', comments.created_at
+        )
+    ) AS "postComments"
+    FROM posts
+    INNER JOIN comments ON posts.id = comments.post_id
+    WHERE posts.user_id = $1
+    group by posts.title, posts.body, posts.created_at  ;
+$$ LANGUAGE SQL STABLE;

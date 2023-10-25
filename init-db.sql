@@ -53,3 +53,11 @@ BEGIN
 
 END;
 $$ LANGUAGE plpgsql VOLATILE;
+
+CREATE FUNCTION get_posts_by_user_id(
+    user_id INTEGER
+) RETURNS SETOF posts AS $$
+    SELECT * FROM posts WHERE posts.user_id = $1;
+$$ LANGUAGE SQL STABLE;
+
+

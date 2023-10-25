@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "start:dev": "postgraphile -c postgres://postgres-gql:postgres-gql@localhost:5871/postgres-gql -s public --watch"
+  },
   "dependencies": {
     "postgraphile": "^4.13.0"
   }

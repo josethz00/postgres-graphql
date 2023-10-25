@@ -6,10 +6,7 @@ This project demonstrates how to create a powerful and efficient GraphQL API usi
 1. [Features](#features)
 2. [Prerequisites](#prerequisites)
 3. [Getting Started](#getting-started)
-4. [Usage](#usage)
-5. [Advanced Configuration](#advanced-configuration)
-6. [Security](#security)
-7. [Performance Tuning](#performance-tuning)
+4. [Querying and Mutating](#querying-and-mutating)
 
 ## Features
 

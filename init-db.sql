@@ -42,9 +42,11 @@ CREATE FUNCTION create_user_with_first_post(
     post_title VARCHAR(100),
     post_body TEXT
 ) RETURNS users AS $$
-BEGIN
 
-    DECLARE new_user users;
+DECLARE
+    new_user users;
+    
+BEGIN
     new_user := create_user(username, password, email);
     INSERT INTO posts (title, body, user_id) VALUES (post_title, post_body, new_user.id);
     RETURN new_user;
